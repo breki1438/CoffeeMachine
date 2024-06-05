@@ -145,7 +145,7 @@ namespace CoffeeMachine
             { 
                 if (coffeSize != 0) 
                 {
-                    CoffeBox.Image = Image.FromFile(@"..\..\..\..\..\coffeecup.png");
+                    CoffeBox.Image = Image.FromFile(@"..\..\..\Images\coffeecup.png");
                     Display.Text = coffeType.ToString();
                 }
                 else
