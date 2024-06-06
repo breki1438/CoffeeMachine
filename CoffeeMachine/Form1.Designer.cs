@@ -42,6 +42,7 @@
             SubSugar = new Button();
             label1 = new Label();
             CoffeBox = new PictureBox();
+            ServiceButton = new Button();
             ((System.ComponentModel.ISupportInitialize)CoffeBox).BeginInit();
             SuspendLayout();
             // 
@@ -126,6 +127,7 @@
             // 
             // SugarLevel
             // 
+            SugarLevel.ForeColor = Color.Navy;
             SugarLevel.Location = new Point(499, 417);
             SugarLevel.Name = "SugarLevel";
             SugarLevel.Size = new Size(169, 29);
@@ -173,7 +175,16 @@
             CoffeBox.Size = new Size(291, 250);
             CoffeBox.TabIndex = 12;
             CoffeBox.TabStop = false;
-
+            // 
+            // ServiceButton
+            // 
+            ServiceButton.BackgroundImage = (Image)resources.GetObject("ServiceButton.BackgroundImage");
+            ServiceButton.Location = new Point(823, 366);
+            ServiceButton.Name = "ServiceButton";
+            ServiceButton.Size = new Size(80, 80);
+            ServiceButton.TabIndex = 13;
+            ServiceButton.UseVisualStyleBackColor = true;
+            ServiceButton.Click += ServiceButton_Click;
             // 
             // Form1
             // 
@@ -181,6 +192,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             ClientSize = new Size(1089, 1061);
+            Controls.Add(ServiceButton);
             Controls.Add(CoffeBox);
             Controls.Add(label1);
             Controls.Add(SubSugar);
@@ -216,5 +228,6 @@
         private Button SubSugar;
         private Label label1;
         private PictureBox CoffeBox;
+        private Button ServiceButton;
     }
 }
