@@ -5,16 +5,30 @@ namespace CoffeeMachine
         bool powerState = false;
         int coffeType = 0;
         double coffeSize = 0;
+        public static bool condensation = false;
+
         public Form1()
         {
             InitializeComponent();
+            Display.Text = "-";
         }
 
         private void PowerButton_Click(object sender, EventArgs e)
         {
             powerState = !powerState;
 
-            Display.Text = powerState.ToString();
+
+            if (powerState)
+            {
+
+                Display.Text = "Uruchomiono";
+            }
+            else
+            {
+                Display.Text = "-";
+            }
+
+
         }
 
         private void Display_TextChanged(object sender, EventArgs e)
@@ -43,7 +57,7 @@ namespace CoffeeMachine
             if (powerState)
             {
                 coffeType = 2;
-                Display.Text = $"Rodzaj kawy: {coffeType} : Cappucchino";
+                Display.Text = $"Rodzaj kawy: {coffeType} : Cappuccino";
             }
 
             else
@@ -127,7 +141,17 @@ namespace CoffeeMachine
             SugarLevel.Maximum = 6;
             SugarLevel.Minimum = 0;
             SugarLevel.Step = 1;
-            SugarLevel.Value = SugarLevel.Value + 1;
+
+
+            if (SugarLevel.Value < SugarLevel.Maximum)
+            {
+                SugarLevel.Value = SugarLevel.Value + 1;
+
+            }
+            else
+            {
+                SugarLevel.Value = SugarLevel.Maximum;
+            }
         }
 
         private void SubSugar_Click(object sender, EventArgs e)
@@ -135,18 +159,66 @@ namespace CoffeeMachine
             SugarLevel.Maximum = 6;
             SugarLevel.Minimum = 0;
             SugarLevel.Step = 1;
-            SugarLevel.Value = SugarLevel.Value - 1;
+
+            if (SugarLevel.Value > SugarLevel.Minimum)
+            {
+                SugarLevel.Value = SugarLevel.Value - 1;
+
+            }
+            else
+            {
+                SugarLevel.Value = SugarLevel.Minimum;
+            }
 
         }
 
         private void RunCoffee_Click(object sender, EventArgs e)
         {
-            if(powerState) 
-            { 
-                if (coffeSize != 0) 
+            if (powerState)
+            {
+                if (coffeSize != 0)
                 {
-                    CoffeBox.Image = Image.FromFile(@"..\..\..\Images\coffeecup.png");
-                    Display.Text = coffeType.ToString();
+                    Random random = new Random();
+                    int service = random.Next(1, 6);
+
+                    if (service == 3)
+                    {
+                        condensation = true;
+                        Display.Text = "Czynnoœci serwisowe obowi¹zkowe.";
+                    }
+                    else
+                    { 
+                        CoffeBox.Image = Image.FromFile(@"..\..\..\Images\coffeecup.png");
+
+                        string coffe = $"Poziom cukru: {SugarLevel.Value}/6 \n";
+
+                        switch (coffeType)
+                        {
+                            case 1:
+                                coffe = coffe + "Rodzaj kawy: Czarna\n";
+                                break;
+                            case 2:
+                                coffe = coffe + "Rodzaj kawy: Cappuccino\n";
+                                break;
+                            case 3:
+                                coffe = coffe + "Rodzaj kawy: Espresso\n";
+                                break;
+
+                        }
+
+                        switch (coffeSize)
+                        {
+                            case 0.5:
+                                coffe = coffe + "Wielkoœæ: Ma³a\n";
+                                break;
+                            case 1.0:
+                                coffe = coffe + "Wielkoœæ: Du¿a\n";
+                                break;
+
+                        }
+
+                        Display.Text = coffe;
+                    }
                 }
                 else
                 {
@@ -157,7 +229,23 @@ namespace CoffeeMachine
             {
                 Display.Text = "Brak zasilania!!!";
             }
-            
+
         }
-    }
+
+        private void ServiceButton_Click(object sender, EventArgs e)
+        {
+            if (condensation)
+            {
+                Form2 form2 = new Form2();
+                form2.Show();
+            }
+            else
+            {
+                Display.Text = "Pojemnik na skropliny nie wymaga opró¿nienia";
+            }
+
+
+        }
+
+    }   
 }
