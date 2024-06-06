@@ -90,7 +90,7 @@ namespace CoffeeMachine
                 if (coffeType != 0)
                 {
                     coffeSize = 0.5;
-                    Display.Text = $"Rozmiar kawy: {coffeSize} fili¿anki";
+                    Display.Text = $"Rozmiar kawy: Ma³a";
                 }
                 else
                 {
@@ -114,7 +114,7 @@ namespace CoffeeMachine
                     if (coffeType != 3)
                     {
                         coffeSize = 1.0;
-                        Display.Text = $"Rozmiar kawy: {coffeSize} fili¿anki";
+                        Display.Text = $"Rozmiar kawy: Du¿a";
                     }
                     else
                     {
